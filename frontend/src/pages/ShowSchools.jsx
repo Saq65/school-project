@@ -81,7 +81,7 @@ const ShowSchools = () => {
                     </div>
                     <button
                         onClick={() => navigate('/add-school')}
-                        className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition shadow-md"
+                        className="bg-indigo-500 text-white px-6 py-3 font-poppines rounded-lg font-medium hover:bg-indigo-700 transition shadow-md"
                     >
                         + Add New School
                     </button>
