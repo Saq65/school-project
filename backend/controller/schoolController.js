@@ -113,7 +113,6 @@ exports.deleteSchool = async (req, res) => {
 
         const [result] = await db.execute('DELETE FROM schools WHERE id = ?', [id]);
 
-        // Delete the image file if it exists
         if (schools[0].image) {
             const imagePath = path.join(__dirname, '..', schools[0].image);
             if (fs.existsSync(imagePath)) {
