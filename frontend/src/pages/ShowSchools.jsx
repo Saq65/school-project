@@ -62,6 +62,9 @@ const ShowSchools = () => {
                     <div>
                         <h1 className="text-3xl font-bold text-gray-900">Schools Directory</h1>
                         <p className="mt-2 text-gray-600">Browse through our collection of schools</p>
+                        <details>
+                            <p>created by saqlain</p>
+                        </details>
                     </div>
                     <button
                         onClick={() => navigate('/add-school')}
