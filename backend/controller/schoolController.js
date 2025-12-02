@@ -10,10 +10,8 @@ if (!fs.existsSync(uploadsDir)) {
 
 exports.addSchool = async (req, res) => {
     try {
-        // Validate input
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            // Delete uploaded file if validation fails
             if (req.file) {
                 fs.unlinkSync(req.file.path);
             }

@@ -8,7 +8,7 @@ const ShowSchools = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+    const API_BASE_URL = process.env.REACT_APP_API_URL?.replace('/api', '') || 'https://school-project-u33a.onrender.com';
 
     useEffect(() => {
         fetchSchools();
@@ -122,7 +122,7 @@ const ShowSchools = () => {
                                     <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-1">
                                         {school.name}
                                     </h3>
-                                    
+
                                     <div className="space-y-2 text-sm text-gray-600">
                                         <div className="flex items-start">
                                             <svg className="w-5 h-5 mr-2 text-gray-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -131,7 +131,7 @@ const ShowSchools = () => {
                                             </svg>
                                             <span className="line-clamp-2">{school.address}</span>
                                         </div>
-                                        
+
                                         <div className="flex items-center">
                                             <svg className="w-5 h-5 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
