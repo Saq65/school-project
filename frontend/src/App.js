@@ -7,7 +7,7 @@ export default function App() {
         <Router>
             <div className="App">
                 <Routes>
-                    <Route path="/" element={<Navigate to="/schools" replace />} />
+                    <Route path="/" element={<Navigate to="/add-school" replace />} />
                     <Route path="/add-school" element={<AddSchool />} />
                     <Route path="/schools" element={<ShowSchools />} />
                 </Routes>
