@@ -97,3 +97,41 @@ exports.getSchoolById = async (req, res) => {
         });
     }
 };
+
+exports.deleteSchool = async (req, res) => {
+    try {
+        const { id } = req.params;
+        
+        const [schools] = await db.execute('SELECT image FROM schools WHERE id = ?', [id]);
+        
+        if (schools.length === 0) {
+            return res.status(404).json({ 
+                success: false, 
+                message: 'School not found' 
+            });
+        }
+
+        const [result] = await db.execute('DELETE FROM schools WHERE id = ?', [id]);
+
+        // Delete the image file if it exists
+        if (schools[0].image) {
+            const imagePath = path.join(__dirname, '..', schools[0].image);
+            if (fs.existsSync(imagePath)) {
+                fs.unlinkSync(imagePath);
+            }
+        }
+
+        res.json({
+            success: true,
+            message: 'School deleted successfully'
+        });
+
+    } catch (error) {
+        console.error('Error deleting school:', error);
+        res.status(500).json({ 
+            success: false, 
+            message: 'Error deleting school',
+            error: error.message 
+        });
+    }
+};

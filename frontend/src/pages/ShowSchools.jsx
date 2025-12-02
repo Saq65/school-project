@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { schoolAPI } from '../utils/api';
 import { useNavigate } from 'react-router-dom';
+import { Trash2 } from 'lucide-react';
 
 const ShowSchools = () => {
     const [schools, setSchools] = useState([]);
@@ -24,6 +25,18 @@ const ShowSchools = () => {
             console.error('Error fetching schools:', err);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleDelete = async (schoolId, schoolName) => {
+        if (window.confirm(`Are you sure you want to delete "${schoolName}"? This action cannot be undone.`)) {
+            try {
+                await schoolAPI.deleteSchool(schoolId);
+                setSchools(schools.filter(school => school.id !== schoolId));
+            } catch (err) {
+                alert('Failed to delete school. Please try again.');
+                console.error('Error deleting school:', err);
+            }
         }
     };
 
@@ -122,9 +135,21 @@ const ShowSchools = () => {
 
                                 {/* School Details */}
                                 <div className="p-5">
-                                    <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-1">
-                                        {school.name}
-                                    </h3>
+                                    <div className="flex justify-between items-start mb-2">
+                                        <h3 className="text-xl font-semibold text-gray-900 line-clamp-1 flex-1">
+                                            {school.name}
+                                        </h3>
+                                        <button
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleDelete(school.id, school.name);
+                                            }}
+                                            className="ml-2 p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors flex-shrink-0"
+                                            title="Delete school"
+                                        >
+                                            <Trash2 size={18} />
+                                        </button>
+                                    </div>
 
                                     <div className="space-y-2 text-sm text-gray-600">
                                         <div className="flex items-start">

@@ -28,6 +28,11 @@ export const schoolAPI = {
         const response = await api.get(`/schools/${id}`);
         return response.data;
     },
+
+    deleteSchool: async (id) => {  
+        const response = await api.delete(`/schools/${id}`);
+        return response.data;
+    },
 };
 
 export default api;

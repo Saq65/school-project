@@ -29,7 +29,7 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 5 * 1024 * 1024 }, 
+    limits: { fileSize: 5 * 1024 * 1024 },
     fileFilter: fileFilter
 });
 
@@ -47,5 +47,6 @@ const schoolValidation = [
 router.post('/', upload.single('image'), schoolValidation, schoolController.addSchool);
 router.get('/', schoolController.getAllSchools);
 router.get('/:id', schoolController.getSchoolById);
+router.delete('/:id', schoolController.deleteSchool);
 
 module.exports = router;
